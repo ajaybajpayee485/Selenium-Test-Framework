@@ -43,7 +43,7 @@ pipeline{
 		
 		success{
 			emailtext{
-				to: 'bajpayeea1@gmail.com',
+				//to: 'bajpayeea1@gmail.com',
 				subject:"Build Success: ${env.JOB_NAME} #${env.BUILD_NUMBER}"
 			}
 		}
