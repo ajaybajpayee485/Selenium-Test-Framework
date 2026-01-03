@@ -49,7 +49,7 @@ pipeline{
 		}
 		failure{
 			emailtext{
-				to: 'bajpayeea1@gmail.com',
+				//to: 'bajpayeea1@gmail.com',
 				subject:"Build failed: ${env.JOB_NAME} #${env.BUILD_NUMBER}".
 				mimeType: 'text/html',
 				attachLog: true
