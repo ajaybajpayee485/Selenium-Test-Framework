@@ -12,8 +12,8 @@
           <include name="verifyOrangeHRMLogo"/>
           <include name="setup"/>
           <include name="tearDown"/>
-          <include name="loadConfig"/>
           <include name="setupPages"/>
+          <include name="loadConfig"/>
         </methods>
       </class> <!-- com.orangeHRM.test.HomePageTest -->
     </classes>

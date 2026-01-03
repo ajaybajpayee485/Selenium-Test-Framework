@@ -4,8 +4,24 @@ pipeline{
 	tools{
 		maven '3.9.12'
 	}
+	environment {
+		COMPOSE_PATH="${WORKSPACE}/DOCKER"
+		SELENIUM_GRID="true"
+	}
 	
 	stages{
+		
+		
+		stage('Start Selenium grid with docker compose'){
+			steps{
+				script{
+					echo "starting selenium grid"
+					bat "docket compose -f ${COMPOSE_PATH}\\docker-compose.yml up -d"
+					sleep 30
+				}
+			}
+		}
+		
 		stage('Checkout'){
 			steps{
 				git branch: 'main' , url: 'https://github.com/ajaybajpayee485/Selenium-Test-Framework'
@@ -14,13 +30,13 @@ pipeline{
 		
 		stage('build'){
 			steps{
-				bat 'mvn clean install'
+				bat 'mvn clean install -DseleniumGrid=true'
 			}
 		}
 		
 		stage('Test'){
 			steps{
-				bat 'mvn test'
+				bat 'mvn test -DseleniumGrid=true'
 			}
 		}
 		

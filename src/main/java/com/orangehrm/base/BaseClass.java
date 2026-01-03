@@ -40,6 +40,7 @@ public class BaseClass {
 	private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 	private static ThreadLocal<ActionDriver> actionDriver = new ThreadLocal<>();
 	protected ThreadLocal<SoftAssert> softAssert = ThreadLocal.withInitial(SoftAssert::new);
+	private boolean seleniumGrid;
 
 	public SoftAssert getSoftAssert() {
 		return softAssert.get();
@@ -139,11 +140,18 @@ public class BaseClass {
 		getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(implicitWait));
 
 		getDriver().manage().window().maximize();
-		try {
+//		try {
+//			getDriver().get(prop.getProperty("url"));
+//		} catch (Exception e) {
+//			System.out.println("Failed to Naviagte to the URL:" + e.getMessage());
+//
+//		}
+		
+		if(seleniumGrid) {
+			getDriver().get(prop.getProperty("url_grid"));
+		}
+		else {
 			getDriver().get(prop.getProperty("url"));
-		} catch (Exception e) {
-			System.out.println("Failed to Naviagte to the URL:" + e.getMessage());
-
 		}
 	}
 
